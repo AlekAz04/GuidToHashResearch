@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuidToHashResearch", "GuidToHashResearch.csproj", "{C0519CAE-BD3F-41A3-BD44-76B954AAEEDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItem", "SolutionItem", "{5338F88E-C0DE-4BA2-A915-FF67593C4BBD}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		global.json = global.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0519CAE-BD3F-41A3-BD44-76B954AAEEDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0519CAE-BD3F-41A3-BD44-76B954AAEEDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0519CAE-BD3F-41A3-BD44-76B954AAEEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0519CAE-BD3F-41A3-BD44-76B954AAEEDF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
