@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 
 namespace GuidToHashResearch;
 
@@ -15,7 +15,7 @@ public static class SpeedTestHashAlgorithm
     private static void HashAlgorithmSpeedTest(string algorithm, Func<string, string> hashAlgorithm)
     {
         var guidCount = 10000000;
-        
+
         var guidList = new string[guidCount];
         for (var i = 0; i < guidCount; i++)
         {
@@ -23,7 +23,7 @@ public static class SpeedTestHashAlgorithm
         }
 
         var hashArray = new string[guidCount];
-        
+
         var watch = Stopwatch.StartNew();
         for (int i = 0; i < guidCount; i++)
         {

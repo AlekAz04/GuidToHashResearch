@@ -1,4 +1,4 @@
-﻿namespace GuidToHashResearch;
+namespace GuidToHashResearch;
 
 public static class CalculateCollisions
 {
@@ -10,7 +10,7 @@ public static class CalculateCollisions
 
         foreach (var guid in guidList)
         {
-            var hash = hashFunc(guid.ToString("N")).ToLower();
+            var hash = hashFunc(guid.ToString("N")).ToLower(System.Globalization.CultureInfo.CurrentCulture);
             var subHash = substringFunc(hash, length);
 
             if (!hashed.Add(subHash))

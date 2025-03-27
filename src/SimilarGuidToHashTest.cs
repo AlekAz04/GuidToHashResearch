@@ -1,4 +1,4 @@
-﻿namespace GuidToHashResearch;
+namespace GuidToHashResearch;
 
 public static class SimilarGuidToHashTest
 {
@@ -21,8 +21,8 @@ public static class SimilarGuidToHashTest
         RunTestsForSimilarGuid("Sha512 Random Start", TestSimilarGuidToHashSecondSha512);
     }
 
-    
-    private static void RunTestsForSimilarGuid(string methodName, Func<int, int,int> testMethod)
+
+    private static void RunTestsForSimilarGuid(string methodName, Func<int, int, int> testMethod)
     {
         Console.WriteLine($"Хэширование {methodName}");
 
@@ -33,12 +33,12 @@ public static class SimilarGuidToHashTest
                 var rep = testMethod(guidCount, i);
 
                 Console.WriteLine(
-                    $"Повторение при длине {i} на {guidCount} гуидах: {rep}, процент коллизии: {((double)rep / guidCount) * 100}");
+                    $"Повторение при длине {i} на {guidCount} гуидах: {rep}, процент коллизии: {(double)rep / guidCount * 100}");
             }
         }
     }
 
-    private static int TestSimilarGuidToHash(int take,int length, Func<string, string> hashFunc,
+    private static int TestSimilarGuidToHash(int take, int length, Func<string, string> hashFunc,
         Func<string, int, string> substringFunc)
     {
         var guidList = CreateSimilarGuids(take);
@@ -46,13 +46,13 @@ public static class SimilarGuidToHashTest
         var rep = CalculateCollisions.Collisions(length, hashFunc, substringFunc, guidList);
         return rep;
     }
-    
+
     private static Guid[] CreateSimilarGuids(int count)
     {
         var guids = new List<Guid>();
-        
+
         for (byte i = 0; i < byte.MaxValue; i++)
-        {            
+        {
             for (byte j = 0; j < byte.MaxValue; j++)
             {
                 for (byte k = 0; k < byte.MaxValue; k++)
@@ -61,48 +61,48 @@ public static class SimilarGuidToHashTest
                 }
             }
         }
-        
+
         return guids.Take(count).ToArray();
     }
-    
+
     private static int TestSimilarGuidToHashMD5(int take, int length)
     {
-        return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringMD5Hash, (hash, len) => hash.Substring(0, len));
+        return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringMD5Hash, (hash, len) => hash[..len]);
     }
-    
-    private static int TestSimilarGuidToHashMD5_1(int take,int length)
+
+    private static int TestSimilarGuidToHashMD5_1(int take, int length)
     {
         return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringMD5Hash,
             (hash, len) => hash.Substring(Random.Shared.Next(0, hash.Length - len), len));
     }
-    private static int TestSimilarGuidToHashFirstSha256(int take,int length)
+    private static int TestSimilarGuidToHashFirstSha256(int take, int length)
     {
-        return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringSha256Hash, (hash, len) => hash.Substring(0, len));
+        return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringSha256Hash, (hash, len) => hash[..len]);
     }
 
-    private static int TestSimilarGuidToHashSecondSha256(int take,int length)
+    private static int TestSimilarGuidToHashSecondSha256(int take, int length)
     {
         return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringSha256Hash,
             (hash, len) => hash.Substring(Random.Shared.Next(0, hash.Length - len), len));
     }
 
-    private static int TestSimilarGuidToHashFirstSha384(int take,int length)
+    private static int TestSimilarGuidToHashFirstSha384(int take, int length)
     {
-        return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringSha384Hash, (hash, len) => hash.Substring(0, len));
+        return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringSha384Hash, (hash, len) => hash[..len]);
     }
 
-    private static int TestSimilarGuidToHashSecondSha384(int take,int length)
+    private static int TestSimilarGuidToHashSecondSha384(int take, int length)
     {
         return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringSha384Hash,
             (hash, len) => hash.Substring(Random.Shared.Next(0, hash.Length - len), len));
     }
 
-    private static int TestSimilarGuidToHashFirstSha512(int take,int length)
+    private static int TestSimilarGuidToHashFirstSha512(int take, int length)
     {
-        return TestSimilarGuidToHash(take,  length, HashAlgorithm.GetStringSha512Hash, (hash, len) => hash.Substring(0, len));
+        return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringSha512Hash, (hash, len) => hash[..len]);
     }
 
-    private static int TestSimilarGuidToHashSecondSha512(int take,int length)
+    private static int TestSimilarGuidToHashSecondSha512(int take, int length)
     {
         return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringSha512Hash,
             (hash, len) => hash.Substring(Random.Shared.Next(0, hash.Length - len), len));

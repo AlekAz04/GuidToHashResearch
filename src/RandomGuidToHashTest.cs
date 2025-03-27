@@ -1,4 +1,4 @@
-﻿namespace GuidToHashResearch;
+namespace GuidToHashResearch;
 
 public static class RandomGuidToHashTest
 {
@@ -20,7 +20,7 @@ public static class RandomGuidToHashTest
         Console.WriteLine();
         RunTestsForRandomGuid("Sha512 Random Start", TestGuidToHashSecondSha512);
     }
-    
+
     private static void RunTestsForRandomGuid(string methodName, Func<int, int, int> testMethod)
     {
         Console.WriteLine($"Хэширование {methodName}");
@@ -31,7 +31,7 @@ public static class RandomGuidToHashTest
                 var rep = testMethod(guidCount, i);
 
                 Console.WriteLine(
-                    $"Повторение при длине {i} на {guidCount} гуидах: {rep}, процент коллизии: {((double)rep / guidCount) * 100}");
+                    $"Повторение при длине {i} на {guidCount} гуидах: {rep}, процент коллизии: {(double)rep / guidCount * 100}");
             }
         }
     }
@@ -49,10 +49,10 @@ public static class RandomGuidToHashTest
         var rep = CalculateCollisions.Collisions(length, hashFunc, substringFunc, guidList);
         return rep;
     }
-    
+
     private static int TestGuidToHashFirstMD5(int guidCount, int length)
     {
-        return TestRandomGuidToHash(guidCount, length, HashAlgorithm.GetStringMD5Hash, (hash, len) => hash.Substring(0, len));
+        return TestRandomGuidToHash(guidCount, length, HashAlgorithm.GetStringMD5Hash, (hash, len) => hash[..len]);
     }
 
     private static int TestGuidToHashSecondMD5(int guidCount, int length)
@@ -63,7 +63,7 @@ public static class RandomGuidToHashTest
 
     private static int TestGuidToHashFirstSha256(int guidCount, int length)
     {
-        return TestRandomGuidToHash(guidCount, length, HashAlgorithm.GetStringSha256Hash, (hash, len) => hash.Substring(0, len));
+        return TestRandomGuidToHash(guidCount, length, HashAlgorithm.GetStringSha256Hash, (hash, len) => hash[..len]);
     }
 
     private static int TestGuidToHashSecondSha256(int guidCount, int length)
@@ -74,7 +74,7 @@ public static class RandomGuidToHashTest
 
     private static int TestGuidToHashFirstSha384(int guidCount, int length)
     {
-        return TestRandomGuidToHash(guidCount, length, HashAlgorithm.GetStringSha384Hash, (hash, len) => hash.Substring(0, len));
+        return TestRandomGuidToHash(guidCount, length, HashAlgorithm.GetStringSha384Hash, (hash, len) => hash[..len]);
     }
 
     private static int TestGuidToHashSecondSha384(int guidCount, int length)
@@ -85,7 +85,7 @@ public static class RandomGuidToHashTest
 
     private static int TestGuidToHashFirstSha512(int guidCount, int length)
     {
-        return TestRandomGuidToHash(guidCount, length, HashAlgorithm.GetStringSha512Hash, (hash, len) => hash.Substring(0, len));
+        return TestRandomGuidToHash(guidCount, length, HashAlgorithm.GetStringSha512Hash, (hash, len) => hash[..len]);
     }
 
     private static int TestGuidToHashSecondSha512(int guidCount, int length)
