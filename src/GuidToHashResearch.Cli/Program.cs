@@ -1,4 +1,4 @@
-using GuidToHashResearch;
+using GuidToHashResearch.Cli;
 
 Console.WriteLine("Рандомные Guid");
 RandomGuidToHashTest.RunRandomGuid();

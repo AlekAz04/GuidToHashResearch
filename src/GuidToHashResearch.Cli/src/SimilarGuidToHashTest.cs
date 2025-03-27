@@ -1,4 +1,4 @@
-namespace GuidToHashResearch;
+namespace GuidToHashResearch.Cli;
 
 public static class SimilarGuidToHashTest
 {

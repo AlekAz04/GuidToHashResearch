@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
-namespace GuidToHashResearch;
+namespace GuidToHashResearch.Cli;
 
 public static class SpeedTestHashAlgorithm
 {
