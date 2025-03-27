@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GuidToHashResearch;
 
@@ -12,17 +13,18 @@ public static class SpeedTestHashAlgorithm
         HashAlgorithmSpeedTest("Sha512", HashAlgorithm.GetStringSha512Hash);
     }
 
+    [SuppressMessage("ReSharper", "CollectionNeverQueried.Local")]
     private static void HashAlgorithmSpeedTest(string algorithm, Func<string, string> hashAlgorithm)
     {
-        var guidCount = 10000000;
+        const int guidCount = 10000000;
 
-        var guidList = new string[guidCount];
-        for (var i = 0; i < guidCount; i++)
+        string[] guidList = new string[guidCount];
+        for (int i = 0; i < guidCount; i++)
         {
             guidList[i] = Guid.NewGuid().ToString("N");
         }
 
-        var hashArray = new string[guidCount];
+        string[] hashArray = new string[guidCount];
 
         var watch = Stopwatch.StartNew();
         for (int i = 0; i < guidCount; i++)

@@ -1,4 +1,3 @@
-
 using GuidToHashResearch;
 
 Console.WriteLine("Рандомные Guid");

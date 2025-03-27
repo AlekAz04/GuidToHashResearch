@@ -4,9 +4,9 @@ public static class SimilarGuidToHashTest
 {
     public static void RunSimilarGuid()
     {
-        RunTestsForSimilarGuid("MD5", TestSimilarGuidToHashMD5);
+        RunTestsForSimilarGuid("MD5", TestSimilarGuidToHashFirstMd5);
         Console.WriteLine();
-        RunTestsForSimilarGuid("MD5 Random Start", TestSimilarGuidToHashMD5_1);
+        RunTestsForSimilarGuid("MD5 Random Start", TestSimilarGuidToHashSecondMd5);
         Console.WriteLine();
         RunTestsForSimilarGuid("Sha256", TestSimilarGuidToHashFirstSha256);
         Console.WriteLine();
@@ -43,8 +43,8 @@ public static class SimilarGuidToHashTest
     {
         var guidList = CreateSimilarGuids(take);
 
-        var rep = CalculateCollisions.Collisions(length, hashFunc, substringFunc, guidList);
-        return rep;
+        int collisions = CalculateCollisions.Collisions(length, hashFunc, substringFunc, guidList);
+        return collisions;
     }
 
     private static Guid[] CreateSimilarGuids(int count)
@@ -65,12 +65,12 @@ public static class SimilarGuidToHashTest
         return guids.Take(count).ToArray();
     }
 
-    private static int TestSimilarGuidToHashMD5(int take, int length)
+    private static int TestSimilarGuidToHashFirstMd5(int take, int length)
     {
         return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringMD5Hash, (hash, len) => hash[..len]);
     }
 
-    private static int TestSimilarGuidToHashMD5_1(int take, int length)
+    private static int TestSimilarGuidToHashSecondMd5(int take, int length)
     {
         return TestSimilarGuidToHash(take, length, HashAlgorithm.GetStringMD5Hash,
             (hash, len) => hash.Substring(Random.Shared.Next(0, hash.Length - len), len));
